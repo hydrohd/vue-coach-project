@@ -6,8 +6,7 @@ export default {
 </script>
 
 <template>
-  <h1>Not Found</h1>
-
+  Contact a coach
 </template>
 
 <style scoped>

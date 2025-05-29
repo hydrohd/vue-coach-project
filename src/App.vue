@@ -1,28 +1,32 @@
 <script lang="js">
 
-import CoachesList from '@/pages/coaches/CoachesList.vue';
+import TheHeader from '@/components/TheHeader.vue';
 
 export default {
-  components: { CoachesList }
+  components: {
+    TheHeader,
+  }
 }
 </script>
 
 <template>
-  <CoachesList></CoachesList>
+  <TheHeader></TheHeader>
+
+  <router-view></router-view>
 </template>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-* {
-  box-sizing: border-box;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-html {
-  font-family: "Roboto", sans-serif;
-}
+  html {
+    font-family: "Roboto", sans-serif;
+  }
 
-body {
-  margin: 0;
-}
+  body {
+    margin: 0;
+  }
 </style>
