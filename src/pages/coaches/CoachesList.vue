@@ -4,9 +4,11 @@ import CoachItem from '@/components/coaches/CoachItem.vue';
 import BaseButton from '@/components/ui/BaseButton.vue';
 import CoachFilter from '@/components/coaches/CoachFilter.vue';
 import BaseSpinner from '@/components/ui/BaseSpinner.vue';
+import BaseCard from '../../components/ui/BaseCard.vue';
+import BaseDialog from '../../components/ui/BaseDialog.vue';
 
 export default {
-  components: { BaseSpinner, CoachFilter, BaseButton, CoachItem },
+  components: { BaseDialog, BaseSpinner, CoachFilter, BaseButton, CoachItem, BaseCard },
   data () {
     return {
       activeFilters: {
@@ -15,6 +17,7 @@ export default {
         career: true
       },
       isLoading: false,
+      error: null,
     }
   },
   computed: {
@@ -49,8 +52,16 @@ export default {
     },
     async loadCoaches() {
       this.isLoading = true;
-      await this.$store.dispatch('coaches/loadCoaches');
+      try {
+        await this.$store.dispatch('coaches/loadCoaches');
+
+      }catch(error) {
+        this.error = error.message || 'Something went wrong!';
+      }
       this.isLoading = false;
+    },
+    handleError() {
+      this.error = null;
     }
   }
 
@@ -58,6 +69,9 @@ export default {
 </script>
 
 <template>
+  <base-dialog :show="!!error" title="Error Occured" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
   <section>
     <coach-filter @change-filter="setFilters"></coach-filter>
   </section>

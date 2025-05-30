@@ -28,12 +28,13 @@ export default {
     }
   },
   async loadCoaches(context) {
-    const response = await fetch(`https://vue-coach-project-7f712-default-rtdb.firebaseio.com/coaches.json`)
+    const response = await fetch('https://vue-coach-project-7f712-default-rtdb.firebaseio.com/coaches.json')
     const responseData = await response.json();
     // console.log(responseData);
 
     if (!response.ok) {
       //error for later
+      throw new Error(responseData.message || 'Failed to fetch!');
     }
 
     const coaches = [];
