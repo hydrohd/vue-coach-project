@@ -51,11 +51,11 @@
         }
 
         const formData = {
-          first: this.firstName,
-          last: this.lastName,
-          desc: this.description,
-          rate: this.rate,
-          areas: this.areas
+          first: this.firstName.val,
+          last: this.lastName.val,
+          desc: this.description.val,
+          rate: this.rate.val,
+          areas: this.areas.val
         };
         console.log(formData);
         this.$emit('save-data', formData);
@@ -86,7 +86,7 @@
 
     <div class="form-control" :class="{invalid: !rate.isValid}">
       <label for="rate">Hourly Rate</label>
-      <input type="number" id="rate" v-model.number="rate.val" @blur="clearValidity('hourlyRate')"/>
+      <input type="number" id="rate" v-model.number="rate.val" @blur="clearValidity('rate')"/>
       <p v-if="!rate.isValid">Rate must greater than 0.</p>
     </div>
 
